@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+{% block discuss %}
+
+<div class="discuss">
+
+  <br>
+  <br>
+  <br>
+  <div class="card w-75" >
+      <div class="card-header">
+        Discuss
+      </div>
+      {% for x in obj %}
+      <div class="card-body">
+        <div class="card-body">
+          <h5 class="card-title">{{x.title}}</h5>
+          <p class="card-text">{{x.description}}</p>
+
+        </div>
+      </div>
+      <hr>
+      {% endfor %}
+      
+      
+    </div>
+</div>
+
+
+{% endblock  %}

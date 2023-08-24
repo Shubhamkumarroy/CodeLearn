@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% block check_content %}
+<div createcontest style="margin-top: 100px;
+margin-left: 200px;
+margin-right: 200px;"> 
+ <div class="card" >
+    
+  <form method="post" action="{% url 'create_contest'%}">
+    {% csrf_token %}
+    <br>
+    <div class="mb-3">
+        <!-- <label for="Title" class="form-label fs-4 bold text-white">Contest Name</label> -->
+
+        <input type="text" class="form-control bg-input" id="Title" name="contest_name" placeholder="Contest Name">
+      </div>
+      <br>
+      <div class="mb-3">
+        <!-- <label for="Title" class="form-label fs-4 bold text-white ">Author</label> -->
+        <input type="text" class="form-control bg-input" id="Author" name="contest_author" placeholder="Author">
+      </div>
+      <div class="mb-3">
+        <!-- <label for="Date" class="form-label fs-4 bold text-white ">Date Of Contest</label> -->
+        <input type="datetime-local" class="form-control bg-input" id="date" name="contest_date" placeholder="">
+      </div>
+    <button type="submit" class="btn btn-primary bold">ADD</button>
+  </form>
+
+    
+  </div> 
+    
+</div>
+
+{% endblock  %}

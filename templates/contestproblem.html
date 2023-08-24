@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+
+{% block contestproblem_content %}
+
+<div class="problem">
+    <div class="card w-75" >
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col"><a  href="#" class="text-black">PROBLEMS</a></th>
+                    {% comment %} <th scope="col"><a href="#" class="text-black">SUBMIT CODE</a></th> {% endcomment %}
+                    <th scope="col"><a href="" class="text-black">MY SUBMISSION</a></th>
+                    <th scope="col"><a href="" class="text-black">STATUS</a></th>
+                    <th scope="col"><a href="" class="text-black">STANDING</a></th>
+                    <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+                    <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+                   <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+                    <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+                    <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+                    <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+                    <th scope="col">&nbsp;&nbsp;&nbsp;</th> 
+          
+                  </tr>
+                </thead>
+                
+              </table>
+              <hr>
+              <div class="card-body">
+               
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <!-- <th scope="col">Tag</th>
+                        <th scope="col">Difficulty</th> -->
+                        <th scope="col">&nbsp;&nbsp;</th>
+                        <th scope="col">&nbsp;&nbsp;</th>
+                        {% comment %} <th scope="col">&nbsp;&nbsp;</th> {% endcomment %}
+        
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in obj %}
+                        {% comment %} {{val}}=1 {% endcomment %}
+                        <tr>
+                            <th scope="row"><a href="{% url 'solve'  x.id%}">
+                                <span>{{x.id}}</span>
+                            </a></th>
+                            <td><a href="{% url 'solve'  x.id%}">
+                                <span>{{x.title}}</span>
+                            </a>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                          <td>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </td> 
+                            <td><i class="bi bi-person-fill"></i></td>
+                            
+                          </tr>
+                        {% endfor %}
+                      
+                    </tbody>
+                  </table>
+                      
+            </div>
+        
+        
+        
+        
+    </div>
+</div>
+{% endblock  %}

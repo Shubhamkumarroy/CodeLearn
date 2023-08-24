@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block codelearn %}
+<br>
+<div >
+    <div class="codelearn">
+        <table class="table">
+            
+            <tbody>
+              {% for x in obj %}
+              <tr>
+                <h5>{{x.title}} </h5>
+                <p>{{x.description}}</p>
+              </tr>
+              <hr>
+              {% endfor %}
+              
+              
+            
+            </tbody>
+          </table>
+    </div>
+</div>
+
+
+
+{% endblock  %}

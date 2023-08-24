@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+
+{% block contest %}
+
+<div class="contest">
+
+  <br>
+  <br>
+  <br>
+  <div class="card w-75" >
+      <div class="card-header">
+        Current or upcoming contests
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Writers</th>
+            <th scope="col">Start</th>
+            <th scope="col">Link</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for x in obj1 %}
+          <tr>
+           
+            <td>{{x.nname}}</td>
+            <td>{{x.nauthor}}</td>
+            <td>{{x.ndate}}</td>
+            <td><a href="{% url 'contestenter' x.id %}">Enter</a></td>
+
+          </tr>
+          {% endfor %}
+        
+                    
+
+        </tbody>
+      </table>
+      
+      
+    </div>
+    <br>
+    <br>
+    <div class="card w-75" >
+        <div class="card-header">
+         Past contests
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Writers</th>
+              <th scope="col">Start</th>
+              <th scope="col">Link</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            {% for x in obj2 %}
+          <tr>
+  
+            <td>{{x.nname}}</td>
+            <td>{{x.nauthor}}</td>
+            <td>{{x.ndate}}</td>
+            <td><a href="{% url 'contestenter' x.id %}">Enter</a></td>
+
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        
+        
+      </div>
+</div>
+
+
+{% endblock  %}

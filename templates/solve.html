@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+
+
+
+{% block solve_content %}
+<div class="solve_prb">
+  <div class="card m-5 " id="sol"style="width: 50rem">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><a  href="{% url 'problem'%}" class="text-black">PROBLEMS</a></th>
+          <th scope="col"><a href="{% url 'submit' id %}" class="text-black">SUBMIT CODE</a></th>
+          <th scope="col"><a href="" class="text-black">MY SUBMISSION</a></th>
+          <th scope="col"><a href="" class="text-black">STATUS</a></th>
+          <th scope="col"><a href="" class="text-black">STANDING</a></th>
+          <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+          <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+          <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+          <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+          <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+          <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+          <th scope="col">&nbsp;&nbsp;&nbsp;</th>
+
+        </tr>
+      </thead>
+      
+    </table>
+      <br>
+      {% comment %} time limit per test10 seconds
+memory limit per test512 megabytes
+inputstandard input
+outputstandard output {% endcomment %}
+    {% comment %} <h3 class="text-center">{{x.id}}{{problem.title}}</h3> {% endcomment %}
+    <div class="card-body">
+       {% for x in problem %}
+       <h3 class="text-center">{{x.id}} . {{x.title}}</h3>
+        <h5 class="text-center">{{x.compexity}}</h5>
+        <h5 class="text-center">input : standard input</h5>
+        <h5 class="text-center">output : standard output</h5>
+
+
+       <br>
+       <br>
+       <p class="text-center">{{x.description}}</p>
+       {% comment %} <h4>Input</h4>
+        <p>The first line contains a single integer t.</p>
+        <p>The first line of each testcase contains a single integer n (1≤n≤1500
+            ).
+        </p>
+        <p>Next line contain n integer </p>
+        <p>The sum of n
+            over all testcases doesn't exceed 1500
+           .</p>
+        <h4>Output</h4>
+        <p>For each testcase return three integer in the form of vector.</p> {% endcomment %}
+        <br>
+        <h4>Example</h4>
+        <div class="card">
+            <div class="card-body">
+             <h5>Input</h5>
+             <hr>
+            {{len}}
+             {% for t in x.input_data %}
+                <p>{{t.input_data}}</p>
+             {% endfor %}
+             <hr>
+             <h5>Output</h5>
+             <hr>
+             {% for t in testcase %}
+             <p>{{t.expected_output}}</p>
+          {% endfor %}
+             
+
+             
+            </div>
+            
+          </div>
+       {% endfor %}
+        
+
+    </div>
+</div>
+
+</div>
+
+
+{% endblock  %}

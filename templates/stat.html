@@ -1,0 +1,67 @@
+
+{% extends 'index.html' %}
+
+{% block solve_content %}
+
+<div class="card m-5 " id="sol"style="width: 50rem">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" href="{% url 'problem'%}">PROBLEMS</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'submit' id %}">SUBMIT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">STATUS</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">MY SUBMISSION</a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+      <br>
+   
+    <div class="card-body">
+       
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Who</th>
+                <th scope="col">Problem</th>
+                <th scope="col">Lang</th>
+                <th scope="col">Verdict</th>
+                <th scope="col">Code</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">{{id}}</th>
+                <td>User</td>
+                <td><a href="{% url 'solve' id%}">{{title}}</a></td>
+                
+                
+                
+                <td>{{lang}}</td>
+                
+                <td class="text-success fw-bold" >{{verdict}}</td>
+                <!-- edit code watch page -->
+                <td><a href="{% url 'solve' id%}">Code</a></td>
+                
+              </tr>
+              
+            </tbody>
+          </table>
+              
+    </div>
+</div>
+
+{% endblock  %}

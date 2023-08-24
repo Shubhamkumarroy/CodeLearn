@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block explore %}
+    <div class="explore1">
+    <h5>Welcome to</h5>
+    <br>
+    <h4 class="text-capitalize">CodeLearn Explore</h4>
+    <br>
+    <br>
+    <br>
+    <h4>Featured</h4>
+    <br>
+    <div class="row">
+        {% for x in obj %}
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{x.title}}</h5>
+              <p class="card-text">{{x.description}}</p>
+              <a href="#" class="btn btn-primary">{{x.reaction}}</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+        
+       
+      </div>
+
+    </div>
+    
+
+{% endblock  %}

@@ -1,0 +1,51 @@
+{% extends 'index.html' %}
+
+{% block problem_content %}
+
+<div class="problem">
+    <div class="card w-75" >
+        <div class="card m-2" id="sol">
+    
+            <div class="card-body">
+               
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Tag</th>
+                        <th scope="col">Difficulty</th>
+                        <th scope="col"></th>
+        
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for x in obj %}
+              
+                        <tr>
+                            <th scope="row"><a href="{% url 'solve'  x.id%}">
+                                <span>{{x.id}}</span>
+                            </a></th>
+                            <td><a href="{% url 'solve'  x.id%}">
+                                <span>{{x.title}}</span>
+                            </a></td>
+                           
+                            <td>
+                                {% for tag  in x.tags.all %}
+                                <span>{{tag.name}}</span>
+                                {% endfor %}
+                            </td>
+                            <td>{{x.difficulty}}</td>
+                            
+                          </tr>
+            {% endfor %}
+                      
+                    </tbody>
+                  </table>
+                      
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock  %}
