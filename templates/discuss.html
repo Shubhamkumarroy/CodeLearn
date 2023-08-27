@@ -9,7 +9,18 @@
   <br>
   <div class="card w-75" >
       <div class="card-header">
-        Discuss
+        {% comment %} Discuss {% endcomment %}
+        
+
+          <tr><strong>Discuss</strong></tr>
+          <button type="button" class="btn btn-outline-dark" style="margin-left:820px;"><a href="{% url 'adddiscuss' %}" class="text-black text-decoration-none">New&nbsp;+</a></button>
+            <!-- Discuss -->
+          
+      
+         
+          
+        
+        
       </div>
       {% for x in obj %}
       <div class="card-body">

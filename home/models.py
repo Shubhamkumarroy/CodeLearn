@@ -1,13 +1,15 @@
 from django.db import models
 import email
 from operator import mod
-from sqlite3 import Timestamp
 import uuid
 from django.db import models
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
+import pytz
+from datetime import datetime
+from django.utils import timezone
+import pytz
 
 # Create your models here.
 class student(models.Model):
@@ -66,13 +68,15 @@ class codelearn(models.Model):
 class discussitem(models.Model):
     title=models.TextField(max_length=100)
     description=models.TextField(max_length=1000)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
 
 class exploreitem(models.Model):
     title=models.TextField(max_length=100)
     description=models.TextField(max_length=1000)
     reaction=models.TextField(max_length=100)
 
-class user_detail(models.Model):
+class User_detail(models.Model):
     user_detail_name=models.CharField(max_length=100)
     user_detail_email=models.CharField(max_length=100)
     user_detail_password=models.CharField(max_length=100)
@@ -107,7 +111,7 @@ class Cproblem(models.Model):
     constraints=models.TextField(max_length=100)
     pdate=models.DateTimeField(null=True,blank=True)
     def __str__(self):
-        return f'Problem for {self.newcontest.nname} '
+        return f'Problem for {self.title}'
     def save(self, *args, **kwargs):
         if not self.pdate:  # If no date is provided, set it to the current date
             from datetime import date
@@ -159,6 +163,42 @@ class SubmitestCase(models.Model):
 
     def __str__(self):
         return f'Test Case for {self.cproblem.title}'
+
+class IndianDateTimeField(models.DateTimeField):
+    def pre_save(self, model_instance, add):
+        value = timezone.now().astimezone(pytz.timezone('Asia/Kolkata'))
+        setattr(model_instance, self.attname, value)
+        return value
+class Myubmission(models.Model):
+    user_detail = models.ForeignKey(User_detail, on_delete=models.CASCADE)
+    cproblem = models.ForeignKey(Cproblem, on_delete=models.CASCADE)
+    code = models.TextField()
+    output=models.TextField(default="shubham")
+    language = models.CharField(max_length=50)
+    timetaken=models.CharField(max_length=50)
+    memorytaken=models.CharField(max_length=50)
+    verdict=models.CharField(max_length=100)
+    timestamp = IndianDateTimeField(default=timezone.now)
+
+    # Other fields
+
+    def __str__(self):
+        return f"Submission by {self.user_detail.user_detail_name} for Problem: {self.cproblem.title}"
+
+
+# def usercontestsub(models.Model):
+class Usercontestsub(models.Model):
+    user_detail = models.ForeignKey(User_detail, on_delete=models.CASCADE)
+    cproblem = models.ForeignKey(Cproblem, on_delete=models.CASCADE)
+    newcontest=models.ForeignKey(Newcontest,on_delete=models.CASCADE)
+    code = models.TextField()
+    output=models.TextField(default="shubham")
+    language = models.CharField(max_length=50)
+    timetaken=models.CharField(max_length=50)
+    memorytaken=models.CharField(max_length=50)
+    verdict=models.CharField(max_length=100)
+    timestamp = IndianDateTimeField(default=timezone.now)
+
 
 
         

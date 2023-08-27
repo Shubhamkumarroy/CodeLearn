@@ -48,20 +48,33 @@
               </li>
               
               
-              <!-- <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li> --> 
+              {% if user.is_authenticated %}
             </ul>
-             <li class="nav-item dropdown d-flex" style="margin-right: 2px;">
+            <li class="nav-item dropdown d-flex">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-fill"></i>
+                <b><i class="bi bi-person-fill" style="width: 50px;"></i></b>
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu" style="left: -83px;"  aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">{{user.username}}</a></li>
                 <li><a class="dropdown-item" href="#">Account</a></li>
-                <li><a class="dropdown-item" href="#">Baad me</a></li>
+    
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{% url 'logoutuser'%}">Sign out</a></li>
               </ul>
+           {% else %}
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            
+                <!-- <i class="bi bi-person-fill"></i> -->
+                <a href="{% url 'loginuser' %}">
+                    <button class="btn btn-primary me-md-2" type="button">Sign in</button>
+                </a>
+                <a href="{% url 'signup' %}">
+                    <button class="btn btn-primary" type="button">Sign up</button>
+                </a>
+                
+                
+              </div>
+              {% endif %}
             </li>
           </div>
         </div>
@@ -78,12 +91,12 @@
             <div class="col">
                 <div class="d-flex justify-content-between mb-2 bg-dark rounded p-2">
                     <div class="col-12 w-25">
-                        <label class="visually-hidden" for="language">{{lang}}</label>
+                        <label class="visually-hidden" for="language">{{language}}</label>
                         <select class="form-select" id="language" name="language">
-                            {% if lang %}
-                              <option value={{lang}}>{{lang}}</option>
+                            {% if language %}
+                              <option value={{language}}>{{language}}</option>
                             {% else %}
-                              <option value={{lang}}>Choose..</option>
+                              <option value={{language}}>Choose..</option>
                             {% endif %}
                             
                             <option value="Java">Java</option>
@@ -92,7 +105,12 @@
                         </select>
                     </div>
                     <div> 
-                        <button type="submit" formaction="{% url 'submit_ans' id %}"  class="btn btn-success">Submit</button>
+                        {% if param1 == 'practice' %}
+                        <button type="submit" formaction="{% url 'submit_ans' id "practice" %}"  class="btn btn-success">Submit</button>
+                        {% else %}
+                        <button type="submit" formaction="{% url 'submit_ans' id "contestprb" %}"  class="btn btn-success">Submit</button>
+                        {% endif %}
+                        
                         <button type="submit" formaction="{% url 'compile' id %}" class="btn btn-success"><i class="bi bi-play-fill"></i></button>
                    </div> 
                 </div>

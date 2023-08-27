@@ -1,7 +1,7 @@
 
 {% extends 'index.html' %}
 
-{% block solve_content %}
+{% block user_sub %}
 
 <div class="card m-5 " id="sol"style="width: 50rem">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -10,12 +10,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            {% if param1 == "practice" %}
-            <a class="navbar-brand" href="{% url 'problem'%}">PROBLEMS</a>
-          {% else %}
-          <a class="navbar-brand" href="{% url 'contestenter' contestid %}">PROBLEMS</a>
-          {% endif %}
-            
+            <a class="navbar-brand" href="#">PROBLEMS</a>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">SUBMIT</a>
@@ -42,7 +37,12 @@
                 <th scope="col">#</th>    
                 <th scope="col">When</th>
                 <th scope="col">Who</th>
-                <th scope="col">Problem</th>
+                {% if param1 == "practice" %}
+                <th scope="col"><a  href="{% url 'problem'%}" class="text-black">Problem</a></th>
+                {% else %}
+                <th scope="col"><a  href="{% url 'contestenter' contestid %}" class="text-black">Problem</a></th>
+                {% endif %}
+               
                 <th scope="col">Lang</th>
                 <th scope="col">Verdict</th>
                 <th scope="col">Time</th>
@@ -52,25 +52,38 @@
               </tr>
             </thead>
             <tbody>
+             
+              {% for x  in usersub %}
+
               <tr>
-                
-                <th scope="row">{{id}}</th>
-                <td>{{timeofsub}}</td>
-                <td>{{username}}</td>
-                <td><a href="#">{{title}}</a></td>
-                
-                
-                
-                <td>{{language}}</td>
-                
-                 {% if verdict == "Accepted" %}
-                <td class="text-success fw-bold" >{{verdict}}</td>
+  
+                <th scope="row">{{x.id}}</th>
+                <td>{{x.timestamp}}</td>
+                <td>{{x.user_detail.user_detail_name}}</td>
+                {% if param1 == "practice" %}
+                <td><a href=" {% url 'solve' x.cproblem.id "practice" %} ">{{x.cproblem.title}}</a></td>
                 {% else %}
-                <td class="text-danger fw-bold" >{{verdict}}</td>
-                {% endif %} 
-                <td>{{timetaken}}</td>
-                <td>{{memorytaken}}</td>
+                <td><a href=" {% url 'solve' x.cproblem.id "contestprb" %} ">{{x.cproblem.title}}</a></td>
+                {% endif %}
+                
+                
+                
+                
+                <td>{{x.language}}</td>
+                {% if x.verdict == "Accepted" %}
+                <td class="text-success fw-bold" >{{x.verdict}}</td>
+                {% else %}
+                <td class="text-danger fw-bold" >{{x.verdict}}</td>
+                {% endif %}
+                
+                <td>{{x.timetaken}}</td>
+                <td>{{x.memorytaken}}</td>
+
+               
+                
               </tr>
+                {% endfor %}
+              
               
             </tbody>
           </table>

@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block adddiscuss %}
+<div>
+</div>
+<div class="container mt-5 px-3">
+  <form method="post" action="{% url 'discuss'%}">
+      {% csrf_token %}
+      <br>
+      <div class="mb-3">
+          <label for="Title" class="form-label fs-4 bold text-white">Blog  Title</label>
+          <input type="text" class="form-control bg-input" id="Title" name="title" placeholder="Enter topic title...">
+        </div>
+        <br>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label fs-4 bold text-white ">Description</label>
+          <textarea class="form-control bg-input" id="blog" name="description"rows="5"></textarea>
+        </div>
+      <button type="submit" class="btn btn-primary bold ">Post</button>
+    </form>
+</div>
+</div>
+{% endblock  %}

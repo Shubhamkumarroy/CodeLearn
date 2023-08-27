@@ -94,6 +94,22 @@
             </div>
         </div>
         </div>
+        <div class="row m-3">
+            <div class="col">
+              <label for="Tag" class="mt-4 mb-2">Tags</label>
+              <textarea name="Tag" id="Tag" class="form-control" aria-label="Tag"></textarea>
+            </div>
+            <div class="col">
+              <label for="Difficulty" class="mt-4 mb-2">Difficulty</label>
+              <textarea name="Difficulty" id="Difficulty" class="form-control" aria-label="Difficulty"></textarea>
+            </div>
+            <div>
+
+            </div>
+            <div>
+
+            </div>
+        </div>
         
         <div>
             <div>
@@ -111,15 +127,25 @@
 
             <div class="row m-3">
               <div class="col">
-                      <label for="input" class="mt-4 mb-2">Input</label>
+                      <label for="input" class="mt-4 mb-2">Sample Input</label>
                     <textarea name="input_data" id="input" class="form-control h-75" aria-label="Input">{{input}}</textarea>
               </div>
                 <div class="col">
-                    <label for="output" class="mt-4 mb-2">Output</label>
+                    <label for="output" class="mt-4 mb-2">Sample Output</label>
                     <textarea name="expected_output" id="output" class="form-control h-75" aria-label="Output">{{output}}</textarea>
                 </div>
+                <div class="col">
+                  <label for="final_input" class="mt-4 mb-2">final_input</label>
+                <textarea name="final_input" id="final_input" class="form-control h-75" aria-label="final_input">{{final_input}}</textarea>
+          </div>
+            <div class="col">
+                <label for="final_output" class="mt-4 mb-2">final_output</label>
+                <textarea name="final_output" id="final_output" class="form-control h-75" aria-label="final_output">{{final_output}}</textarea>
+            </div>
                 
             </div>
+            
+
     </div>
         </div>
        
@@ -195,6 +221,38 @@
         autoCloseBrackets: true,
 
     })
+    
+     var final_input = CodeMirror.fromTextArea(document.getElementById("final_input"), {
+      mode: "text",
+      theme: "dracula",
+      lineNumbers: true,
+      autoCloseBrackets: true,
+
+  })
+  var final_output = CodeMirror.fromTextArea(document.getElementById("final_output"), {
+      mode: "text",
+      theme: "dracula",
+      lineNumbers: true,
+      autoCloseBrackets: true,
+
+  }) 
+  var Tag = CodeMirror.fromTextArea(document.getElementById("Tag"), {
+      mode: "text",
+      theme: "dracula",
+      lineNumbers: true,
+      autoCloseBrackets: true,
+
+  }) 
+  var Difficulty = CodeMirror.fromTextArea(document.getElementById("Difficulty"), {
+      mode: "text",
+      theme: "dracula",
+      lineNumbers: true,
+      autoCloseBrackets: true,
+
+  }) 
+
+    
+    
 
     var width = window.innerWidth
     var input = document.getElementById("input")
@@ -204,10 +262,15 @@
     problem_statement_editor.setSize(0.45*width,"500")
     problem_title_editor.setSize(0.2 * width, "50")
     problem_time_editor.setSize(0.2* width, "50")
+    Tag.setSize(0.2* width, "50")
+    Difficulty.setSize(0.2* width, "50")
     Constraints.setSize(0.2* width, "50")
     contest_name.setSize(0.2 * width,"50")
     input.setSize(0.45*width,"500")
     output.setSize(0.45*width,"500")
+    
+
+
     
     var option = document.getElementById("inlineFormSelectPref")
     option.addEventListener("change", function () {
