@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
 # from djangocodemirror.settings import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,6 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-jv=_qrg3#k$tco2_$uii+1lc3lx*^p6gwi8cbbcm)^r0(om9rq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+STATIC_URL='static/'
+MEDIA_URL='media/'
+
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -76,13 +80,16 @@ WSGI_APPLICATION = 'codelearn.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'codelearn',
+#         'USER': 'cus_ved',
+#         'PASSWORD':'cus_ved@2002',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'codelearn',
-        'USER': 'cus_ved',
-        'PASSWORD':'cus_ved@2002',
-    }
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
