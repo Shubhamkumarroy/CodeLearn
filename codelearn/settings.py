@@ -30,7 +30,7 @@ MEDIA_URL='media/'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://codelearn.onrender.com"]
 
 
 # Application definition
