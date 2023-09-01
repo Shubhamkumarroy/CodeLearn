@@ -7,11 +7,11 @@
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col"><a  href="{% url 'contestenter' id %}" class="text-black">PROBLEMS</a></th>
+                    <th scope="col"><a  href="{% url 'contestenter' id %}" class="text-black">Problems</a></th>
                     {% comment %} <th scope="col"><a href="#" class="text-black">SUBMIT CODE</a></th> {% endcomment %}
-                    <th scope="col"><a href="{% url 'contestusersubmission' id "contestprb" %}" class="text-black">MY SUBMISSION</a></th>
-                    <th scope="col"><a href="" class="text-black">STATUS</a></th>
-                    <th scope="col"><a href="" class="text-black">STANDING</a></th>
+                    <th scope="col"><a href="{% url 'contestusersubmission' id "contestprb" %}" class="text-black">My Submission</a></th>
+                    <th scope="col"><a href="" class="text-black">Status</a></th>
+                    <th scope="col"><a href="" class="text-black">Standing</a></th>
                     <th scope="col">&nbsp;&nbsp;&nbsp;</th>
                     <th scope="col">&nbsp;&nbsp;&nbsp;</th>
                    <th scope="col">&nbsp;&nbsp;&nbsp;</th>
@@ -24,7 +24,7 @@
                 </thead>
                 
               </table>
-              <hr>
+              {% comment %} <hr> {% endcomment %}
               <div class="card-body">
                
                 <table class="table">

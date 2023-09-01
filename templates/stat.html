@@ -1,9 +1,9 @@
 
 {% extends 'index.html' %}
 
-{% block solve_content %}
-
-<div class="card m-5 " id="sol"style="width: 50rem">
+{% block state_content %}
+<div class="state_content">
+<div class="card m-5 " id="sol"style="width: 60rem">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,21 +11,27 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             {% if param1 == "practice" %}
-            <a class="navbar-brand" href="{% url 'problem'%}">PROBLEMS</a>
+            <a class="navbar-brand" href="{% url 'problem'%}"><strong>Problems</strong></a>
           {% else %}
-          <a class="navbar-brand" href="{% url 'contestenter' contestid %}">PROBLEMS</a>
+          <a class="navbar-brand" href="{% url 'contestenter' contestid %}"><strong>Problems</strong></a>
           {% endif %}
             
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if param1 == "practice" %}
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">SUBMIT</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'usersubmission' "practice"  %}"><strong> My Submission</strong></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">STATUS</a>
+                <a class="nav-link disabled" aria-current="page" href="#">Submit</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">MY SUBMISSION</a>
+                <a class="nav-link disabled" href="#">Status</a>
               </li>
+              {% else %}
+               <th scope="col"><a href="{% url 'contestusersubmission' contestid "contestprb" %}" class="text-black">My Submission</a></th>
+              {% endif %}
+              
+              
             </ul>
             
           </div>
@@ -77,5 +83,5 @@
               
     </div>
 </div>
-
+</div>
 {% endblock  %}

@@ -9,24 +9,27 @@
       <thead>
         <tr>
           {% if param1 == "practice" %}
-          <th scope="col"><a  href="{% url 'problem'%}" class="text-black">PROBLEMS</a></th>
+          <th scope="col"><a  href="{% url 'problem'%}" class="text-black">Problems</a></th>
           {% else %}
-          <th scope="col"><a  href="{% url 'contestenter' contestid%}" class="text-black">PROBLEMS</a></th>
+          <th scope="col"><a  href="{% url 'contestenter' contestid%}" class="text-black">problems</a></th>
           {% endif %}
           {% if param1 == "practice" %}
-          <th scope="col"><a href="{% url 'submit' id "practice" %}" class="text-black">SUBMIT CODE</a></th>
+          <th scope="col"><a href="{% url 'submit' id "practice" %}" class="text-black">Submit Code</a></th>
           {% else %}
-          <th scope="col"><a href="{% url 'submit' id "contestprb" %}" class="text-black">SUBMIT CODE</a></th>
+          <th scope="col"><a href="{% url 'submit' id "contestprb" %}" class="text-black">Submit Code</a></th>
           {% endif %}
           
           {% if param1 == "practice" %}
-          <th scope="col"><a href="{% url 'usersubmission' "practice"  %}" class="text-black">MY SUBMISSION</a></th>
+          <th scope="col"><a href="{% url 'usersubmission' "practice"  %}" class="text-black">My Submission</a></th>
+          <th scope="col"><a href="{% url 'othersubmission' "practice"  %}" class="text-black">Other Submission</a></th>
+
           {% else %}
-          <th scope="col"><a href="{% url 'contestusersubmission' contestid "contestprb" %}" class="text-black">MY SUBMISSION</a></th>
+          <th scope="col"><a href="{% url 'contestusersubmission' contestid "contestprb" %}" class="text-black">My Submission</a></th>
+          <th scope="col"><a href="" class="text-black">Status</a></th>
+          <th scope="col"><a href="" class="text-black">Standing</a></th>
           {% endif %}
           
-          <th scope="col"><a href="" class="text-black">STATUS</a></th>
-          <th scope="col"><a href="" class="text-black">STANDING</a></th>
+          
           <th scope="col">&nbsp;&nbsp;&nbsp;</th>
           <th scope="col">&nbsp;&nbsp;&nbsp;</th>
           <th scope="col">&nbsp;&nbsp;&nbsp;</th>

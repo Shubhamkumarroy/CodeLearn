@@ -74,6 +74,7 @@ class discussitem(models.Model):
 class exploreitem(models.Model):
     title=models.TextField(max_length=100)
     description=models.TextField(max_length=1000)
+    link=models.TextField(default='http://www.abc.com')
     reaction=models.TextField(max_length=100)
 
 class User_detail(models.Model):
@@ -175,8 +176,8 @@ class Myubmission(models.Model):
     code = models.TextField()
     output=models.TextField(default="shubham")
     language = models.CharField(max_length=50)
-    timetaken=models.CharField(max_length=50)
-    memorytaken=models.CharField(max_length=50)
+    timetaken=models.CharField(max_length=50,default=0)
+    memorytaken=models.CharField(max_length=50,default=0)
     verdict=models.CharField(max_length=100)
     timestamp = IndianDateTimeField(default=timezone.now)
 
@@ -194,8 +195,8 @@ class Usercontestsub(models.Model):
     code = models.TextField()
     output=models.TextField(default="shubham")
     language = models.CharField(max_length=50)
-    timetaken=models.CharField(max_length=50)
-    memorytaken=models.CharField(max_length=50)
+    timetaken=models.CharField(max_length=50,default=0)
+    memorytaken=models.CharField(max_length=50,default=0)
     verdict=models.CharField(max_length=100)
     timestamp = IndianDateTimeField(default=timezone.now)
 

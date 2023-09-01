@@ -402,10 +402,13 @@ body {
 	<!-- https://dribbble.com/shots/15392711-Dashboard-Login-Sign-Up/-->
   
 <!-- <h5></h5> -->
+{% if error_message%}
 <div class="position-absolute start-50 translate-middle  w-25 alert alert-warning alert-dismissible fade show" role="alert" style="top: 50px;">
   {{error_message}}
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+{% endif %}
+
 <div class="login-container">
 	<div class="login-form">
 	  <div class="login-form-inner">

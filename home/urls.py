@@ -29,6 +29,7 @@ urlpatterns = [
     path('contestenter/<int:id>',views.contestenter,name='contestenter'),
     path('usersubmission/<str:param1>',views.usersubmission,name='usersubmission'),
     path('contestusersubmission/<int:id>/<str:param1>',views.contestusersubmission,name='contestusersubmission'),
+    path('othersubmission/<str:param1>',views.othersubmission,name='othersubmission'),
     
     
     # path('contest',views.contest,name='contest'),

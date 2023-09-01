@@ -158,7 +158,7 @@ def atob(input_string):
 @csrf_exempt
 def checkstatus(token):
     try:
-        print(token)
+        # print(token)
         url = f"https://judge0-ce.p.rapidapi.com/submissions/{token}"
 
         querystring = {"base64_encoded": "true", "fields": "*"}
@@ -173,7 +173,7 @@ def checkstatus(token):
         }
 
         response_data = requests.get(url, headers=headers, params=querystring).json()
-        print(response_data)
+        # print(response_data)
         status_object = response_data.get("status", {})
         status_id = status_object.get("id", None)
         status_description = status_object.get("description", "")
@@ -263,8 +263,8 @@ def caloutput(id, code, ip, ep):
 
         response = requests.post(url, json=payload, headers=headers, params=querystring)
         dataj = response.json()
-        print(dataj)
-        print(dataj['token'])
+        # print(dataj)
+        # print(dataj['token'])
         intermediates = checkstatus(dataj['token'])
         return intermediates
     
@@ -290,14 +290,14 @@ def service(request):
     return HttpResponse("this is service")
 
 def explore(request):
-    if check_login(request):
-        obj=exploreitem.objects.all()
-        context={
-            "obj":obj,
-        }
-        return render(request,'explore.html',context)
-    else:
-        return render(request,'loginpage.html')
+    # if check_login(request):
+    obj=exploreitem.objects.all()
+    context={
+        "obj":obj,
+    }
+    return render(request,'explore.html',context)
+    # else:
+    #     return render(request,'loginpage.html')
 
 @csrf_exempt 
 def adddiscuss(request):
@@ -324,7 +324,7 @@ def discuss(request):
 def solve(request, id, param1):
     try:
         if check_login(request):
-            print(param1)
+            # print(param1)
             problem = Cproblem.objects.filter(pk=id)
             testcase = Cupdatetestcase.objects.filter(cproblem=problem[0])
             soln = Cupdatesolution.objects.filter(cproblem=problem[0])
@@ -435,9 +435,7 @@ def submit_ans(request, id , param1):
             problem = Cproblem.objects.filter(pk=id)
             user = request.user
             username = user.username
-            print(username)
             user_detail = User_detail.objects.filter(user_detail_name=username)
-            print(user_detail)
             conname = problem[0].newcontest
             # print(conname)
             submitestcase = SubmitestCase.objects.filter(cproblem=problem[0])
@@ -519,7 +517,7 @@ def stat(request, id):
         problem = Cproblem.objects.filter(pk=id)
         testcase = Cupdatetestcase.objects.filter(cproblem=problem[0])
         title = problem[0].title
-        print(title)
+        # print(title)
         total_count = testcase.count()
         id = id
         language = request.POST['language']
@@ -692,7 +690,7 @@ def problem(request):
         if check_login(request):
             date = datetime.today()
             obj = Cproblem.objects.filter(pdate__lt=date)
-            print(obj.count())
+            # print(obj.count())
             context = {
                 "obj": obj,
             }
@@ -708,7 +706,7 @@ def usersubmission(request, param1):
         if check_login(request):
             user = request.user
             username = user.username
-            print(username)
+            # print(username)
             
             user_detail = User_detail.objects.filter(user_detail_name=username)
             
@@ -724,7 +722,7 @@ def usersubmission(request, param1):
                 return render(request, 'usersuball.html', context)
             
             else:
-                error_message = "User detail not found."
+                error_message = "No submission from this account"
                 return render(request, 'error_page.html', {'error_message': error_message})
         
         else:
@@ -735,14 +733,30 @@ def usersubmission(request, param1):
         return render(request, 'error_page.html', {'error_message': error_message})
 
     
-        
+def othersubmission(request, param1):
+    try:
+        if check_login(request):
+                usersub = Myubmission.objects.all()
+                context = {
+                    'usersub': usersub,
+                    "param1": param1
+                }
+                
+                return render(request, 'usersuball.html', context)       
+        else:
+            return redirect('/loginuser')
+    
+    except Exception as e:
+        error_message = f"An error occurred: {str(e)}"
+        return render(request, 'error_page.html', {'error_message': error_message})
+    
 
 def contestusersubmission(request, id, param1):
     try:
         if check_login(request):
             user = request.user
             username = user.username
-            print(username)
+            # print(username)
             
             user_detail = User_detail.objects.filter(user_detail_name=username)
             
@@ -767,7 +781,7 @@ def contestusersubmission(request, id, param1):
                     return render(request, 'error_page.html', {'error_message': error_message})
             
             else:
-                error_message = "User detail not found."
+                error_message = "No submission from this account"
                 return render(request, 'error_page.html', {'error_message': error_message})
         
         else:
